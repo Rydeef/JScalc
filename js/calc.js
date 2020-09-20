@@ -6,13 +6,37 @@ let calcEqually = document.querySelector('.calc-menu-equally')
 calcInput.value = '0,00'
 
 function textInput(num){
-   
     if (calcInput.value == '0,00' || calcInput.value == '∞'){
         calcInput.value = '' 
-        calcInput.value = calcInput.value + num;
+        
     }
-    else{
-        calcInput.value = calcInput.value + num;
+    calcInput.value = calcInput.value + num;
+    if (calcInput.value == '+' || calcInput.value == '-' || calcInput.value == '*' || calcInput.value == '/' || calcInput.value == ','){
+        calcInput.value = '0,00'
+    }
+    
+    let calcInputArr = calcInput.value.toString().split('')
+    for(let i=0; i<=calcInputArr.length; i++){
+        if(calcInputArr[i]==='+' && calcInputArr[i+1]==='+' || calcInputArr[i]==='+' && calcInputArr[i+1]==='-' || calcInputArr[i]==='+' && calcInputArr[i+1]==='*' || calcInputArr[i]==='+' && calcInputArr[i+1]==='/' || calcInputArr[i]==='+' && calcInputArr[i+1]==='.'){
+           calcInputArr.pop()
+           calcInput.value = calcInputArr.join('')
+        }
+        if(calcInputArr[i]==='-' && calcInputArr[i+1]==='+' || calcInputArr[i]==='-' && calcInputArr[i+1]==='-' || calcInputArr[i]==='-' && calcInputArr[i+1]==='*' || calcInputArr[i]==='-' && calcInputArr[i+1]==='/' || calcInputArr[i]==='-' && calcInputArr[i+1]==='.'){
+            calcInputArr.pop()
+            calcInput.value = calcInputArr.join('')
+         }
+         if(calcInputArr[i]==='*' && calcInputArr[i+1]==='+' || calcInputArr[i]==='*' && calcInputArr[i+1]==='-' || calcInputArr[i]==='*' && calcInputArr[i+1]==='*' || calcInputArr[i]==='*' && calcInputArr[i+1]==='/' || calcInputArr[i]==='*' && calcInputArr[i+1]==='.'){
+            calcInputArr.pop()
+            calcInput.value = calcInputArr.join('')
+         }
+         if(calcInputArr[i]==='/' && calcInputArr[i+1]==='+' || calcInputArr[i]==='/' && calcInputArr[i+1]==='-' || calcInputArr[i]==='/' && calcInputArr[i+1]==='*' || calcInputArr[i]==='/' && calcInputArr[i+1]==='/' || calcInputArr[i]==='/' && calcInputArr[i+1]==='.'){
+            calcInputArr.pop()
+            calcInput.value = calcInputArr.join('')
+         }
+         if(calcInputArr[i]==='.' && calcInputArr[i+1]==='+' || calcInputArr[i]==='.' && calcInputArr[i+1]==='-' || calcInputArr[i]==='.' && calcInputArr[i+1]==='*' || calcInputArr[i]==='.' && calcInputArr[i+1]==='/' || calcInputArr[i]==='.' && calcInputArr[i+1]==='.'){
+            calcInputArr.pop()
+            calcInput.value = calcInputArr.join('')
+         }
     }
 }
 
@@ -51,4 +75,4 @@ calcUndo.addEventListener('click', function(){
     
     
 })
-
+    
