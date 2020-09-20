@@ -1,29 +1,54 @@
-let calcInput = document.querySelector('.calc-input')
-let backSpace = document.querySelector('.calc-menu-action-backspace')
+let calcInput = document.querySelector('.calc-input-text')
+const calcUndo = document.querySelector('.calc-input-undo')
+let calcEqually = document.querySelector('.calc-menu-equally')
+
+
+calcInput.value = '0,00'
 
 function textInput(num){
-    calcInput.value = calcInput.value + num
-}  
-function textClear() {
-    calcInput.value = ''
+   
+    if (calcInput.value == '0,00' || calcInput.value == '∞'){
+        calcInput.value = '' 
+        calcInput.value = calcInput.value + num;
+    }
+    else{
+        calcInput.value = calcInput.value + num;
+    }
 }
-function equally() {
-    let exp = calcInput.value
-    if(exp) {
-        calcInput.value = eval(exp)
+
+function textClear(){ 
+   calcInput.value = '0,00'
+}
+
+calcEqually.addEventListener('click', function(){
+    let calcEval = eval(calcInput.value)
+    calcInput.value = calcEval
+    
+    if(calcEval == Infinity){
+        calcInput.value = '∞'
     }
     
-}
-
-calcInput.addEventListener('keypress', function equallyEnter(e) {
-    if (e.keyCode == 13) {
-        calcInput.value = eval(calcInput.value)
-        return false
+    if(calcEval == undefined){
+        calcInput.value = '0,00'
     }
-    return true
+    if(calcInput.value == 'NaN'){
+        calcInput.value = 'Error, try again'
+    }
+    if(calcEval == '0'){
+        calcInput.value = '0,00'
+    }
 })
 
-calcInput.addEventListener('keyup', function() {
-    this.value = this.value.replace(/[^\d.+-/* ]/g, '')
+calcUndo.addEventListener('click', function(){
+    if(calcInput.value == '0,00'){
+        calcInput.value = ''
+    }
+    else{
+        let calcInputArray = calcInput.value.toString().split('')
+        let trash = calcInputArray.pop()  
+        calcInput.value = calcInputArray.join('')
+    }
+    
+    
 })
 

@@ -23,13 +23,41 @@ body {
 }
 
 .calc-input {
-  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 536px;
   background-color: #80a1ac;
-  color: white;
-  width: 530px;
+}
+
+.calc-input-text {
+  width: 490px;
+  margin-right: 10px;
   height: 80px;
+  border: none;
+  color: white;
+  font-size: 28px;
+  background-color: #80a1ac;
+  font-family: "Noto Sans", sans-serif;
   text-align: right;
-  font-size: 32px;
+}
+
+.calc-input-undo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 46px;
+  background-color: #80a1ac;
+  margin-right: 5px;
+  border: none;
+  height: 80px;
+  font-size: 24px;
   font-family: "Noto Sans", sans-serif;
 }
 
@@ -45,7 +73,7 @@ body {
   margin-top: 5px;
 }
 
-.calc-menu-number {
+.calc-menu-numbers {
   width: 433px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -54,7 +82,7 @@ body {
       flex-wrap: wrap;
 }
 
-.calc-menu-number button {
+.calc-menu-numbers button {
   width: 139px;
   height: 70px;
   background-color: #b3b3b3;
@@ -84,5 +112,13 @@ body {
   border: none;
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
+}
+
+.calc button:focus {
+  outline: none;
+}
+
+.calc input:focus {
+  outline: none;
 }
 /*# sourceMappingURL=style.css.map */
